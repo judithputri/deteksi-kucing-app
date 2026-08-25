@@ -1,4 +1,4 @@
 streamlit
-tensorflow
+ai-edge-litert
 pillow
 numpy
