@@ -1,8 +1,8 @@
 import numpy as np
 from PIL import Image
-import tflite_runtime.interpreter as tflite
+import ai_edge_litert.interpreter as tflite
 
-# Load model TFLite (ringan & kompatibel dengan Python 3.14)
+# Load model TFLite
 MODEL_PATH = "model_kucing.tflite"
 interpreter = tflite.Interpreter(model_path=MODEL_PATH)
 interpreter.allocate_tensors()
@@ -10,7 +10,7 @@ interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 
-CLASS_NAMES = ['Belang Tiga', 'Hitam', 'Kampung'] # Sesuaikan nama kelasmu
+CLASS_NAMES = ['Belang Tiga', 'Hitam', 'Kampung'] # Sesuaikan dengan nama kelasmu
 
 def predict_image(image_data):
     # Preprocessing gambar
@@ -19,7 +19,7 @@ def predict_image(image_data):
     img_array = np.array(img, dtype=np.float32) / 255.0
     img_array = np.expand_dims(img_array, axis=0)
 
-    # Prediksi via TFLite
+    # Prediksi via LiteRT
     interpreter.set_tensor(input_details[0]['index'], img_array)
     interpreter.invoke()
     predictions = interpreter.get_tensor(output_details[0]['index'])
