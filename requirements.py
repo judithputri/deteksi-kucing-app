@@ -1,4 +1,5 @@
 streamlit
-tensorflow
-numpy
+tensorflow==2.15.0
+tf-keras==2.15.0
 pillow
+numpy<2.0.0
